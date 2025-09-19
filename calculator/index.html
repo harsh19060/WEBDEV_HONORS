@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="piko.css">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 30px; /* padding for whole page */
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+        }
+
+        label, input, select {
+            margin-bottom: 10px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <label for="number1">Enter number 1 :</label>
+        <input type="text" id="number1">
+
+        <label for="number2">Enter number 2 :</label>
+        <input type="text" id="number2">
+
+        <label for="operation">Select operation</label>
+        <select name="operation" id="operation">
+            <option value="" disabled selected>-- Select Operation --</option>
+            <option value="add">Add</option>
+            <option value="subs">Subtract</option>
+            <option value="div">Divide</option>
+        </select>
+
+        <input type="submit">
+    </form>
+</body>
+</html>
