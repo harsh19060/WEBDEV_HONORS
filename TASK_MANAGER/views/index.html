@@ -1,0 +1,96 @@
+<?php require 'views/header.html'; ?>
+
+<body>
+    <div class="main-container">
+        <DIV class="duetoday">
+            <h3 style="color: white;">DUE TODAY</h3>
+            <?php if (empty($dueToday)) { ?>
+            <p style="color: rgb(240, 240, 240);">No tasks due today</p>
+            <?php } else { ?>
+            <?php foreach($dueToday as $todo) { ?>
+            <article id="blockduetoday">
+                <header>
+                    <small>Due Today</small>
+                </header>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h3><?=$todo->description;?></h3>
+                    <span class="badge"
+                        style="background-color: orange; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem;">
+                        Today
+                    </span>
+                </div>
+                <footer>
+                    <div id="options">
+                        <span class="buttonoption">
+                            <a href="edit.php?id=<?=$todo->id;?>">EDIT</a>
+                        </span>
+                        <span class="buttonoption">
+                            <a href="delete.php?id=<?=$todo->id;?>">DELETE</a>
+                        </span>
+                        <?php if (! $todo->isCompleted): ?>
+                        <span class="buttonoption">
+                            <a href="mark-complete.php?id=<?=$todo->id;?>">COMPLETED</a>
+                        </span>
+                        <?php endif; ?>
+                    </div>
+                </footer>
+            </article>
+            <?php } ?>
+            <?php } ?>
+            <hr>
+        </DIV>
+        <br>
+        <div class="mytodo">
+
+
+            <h3 style="color: white;">ALL TASKS</h3>
+            <?php foreach($todos as $todo) { ?>
+            <article>
+                <header>
+                    <small>Due: <?=$todo->formatDueDate();?></small>
+                </header>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h3><?=$todo->description;?></h3>
+                    <?php
+            $color = 'red';
+            $status = 'Pending';
+            
+            if ($todo->isCompleted) {
+                $color = 'green';
+                $status = 'Completed';
+            }
+        ?>
+                    <span class="badge"
+                        style="background-color: <?=$color;?>; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem;">
+                        <?=$status;?>
+                    </span>
+                </div>
+                <footer>
+                    <div id="options">
+                        <span class="buttonoption">
+                            <a href="edit.php?id=<?=$todo->id;?>">EDIT</a>
+                        </span>
+                        <span class="buttonoption">
+                            <a href="delete.php?id=<?=$todo->id;?>">DELETE</a>
+                        </span>
+
+                        <?php if (! $todo->isCompleted): ?>
+                        <span class="buttonoption">
+                            <a href="mark-complete.php?id=<?=$todo->id;?>">COMPLETED</a>
+                        </span>
+                        <?php endif; ?>
+                    </div>
+                </footer>
+            </article>
+
+            <?php } ?>
+        </div>
+
+        <div class="footer">
+            <h5><b>
+                    MADE BY HARSHAVRDHAN TALOKAR
+                </b></h5>
+        </div>
+    </div>
+</body>
+<?php require 'views/footer.html'; ?>
